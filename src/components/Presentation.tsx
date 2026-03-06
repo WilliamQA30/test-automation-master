@@ -177,13 +177,13 @@ function TestCasesSlide({ page }: { page: number }) {
               </div>
             </div>
             {tc.evidenceKey && evidenceImages[tc.evidenceKey] && (
-              <div className="w-56 shrink-0 flex flex-col gap-1">
+              <div className="w-80 shrink-0 flex flex-col gap-1">
                 <img 
                   src={evidenceImages[tc.evidenceKey]} 
                   alt={`Evidência ${tc.id}`} 
                   className="rounded-xl border border-slide-muted/20 w-full h-auto object-cover"
                 />
-                <span className="text-[10px] font-mono text-slide-muted text-center">
+                <span className="text-xs font-mono text-slide-muted text-center">
                   {tc.status === 'passou' ? '✅ Passou' : tc.status === 'falhou' ? '❌ Falhou' : '⏳ Pendente'}
                 </span>
               </div>
