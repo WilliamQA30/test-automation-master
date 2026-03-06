@@ -141,7 +141,7 @@ function AnalysisSlide() {
 }
 
 function TestCasesSlide({ page }: { page: number }) {
-  const perPage = 4;
+  const perPage = 2;
   const start = page * perPage;
   const items = testCases.slice(start, start + perPage);
   if (items.length === 0) return null;
@@ -155,28 +155,45 @@ function TestCasesSlide({ page }: { page: number }) {
           {start + 1}-{Math.min(start + perPage, testCases.length)} de {testCases.length}
         </span>
       </div>
-      <div className="flex-1 grid grid-cols-2 gap-3">
+      <div className="flex-1 flex flex-col gap-3">
         {items.map((tc) => (
-          <div key={tc.id} className="bg-slide-card rounded-2xl p-5 flex flex-col gap-2">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-sm text-slide-accent font-bold">{tc.id}</span>
-              <span className={`px-2 py-0.5 rounded text-xs font-bold text-slide-bg ${typeColors[tc.type]}`}>
-                {typeLabels[tc.type]}
-              </span>
-              {statusIcons[tc.status]}
-              <span className="ml-auto text-xs font-mono text-slide-muted uppercase">
-                {tc.priority}
-              </span>
+          <div key={tc.id} className="bg-slide-card rounded-2xl p-4 flex gap-4 flex-1">
+            <div className="flex-1 flex flex-col gap-2">
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-sm text-slide-accent font-bold">{tc.id}</span>
+                <span className={`px-2 py-0.5 rounded text-xs font-bold text-slide-bg ${typeColors[tc.type]}`}>
+                  {typeLabels[tc.type]}
+                </span>
+                {statusIcons[tc.status]}
+                <span className="ml-auto text-xs font-mono text-slide-muted uppercase">
+                  {tc.priority}
+                </span>
+              </div>
+              <h3 className="font-bold text-sm">{tc.scenario}</h3>
+              <div className="space-y-0.5 text-xs text-slide-fg/70">
+                <p><span className="text-slide-success font-bold font-mono">DADO</span> {tc.given}</p>
+                <p><span className="text-slide-warning font-bold font-mono">QUANDO</span> {tc.when}</p>
+                <p><span className="text-slide-accent-2 font-bold font-mono">ENTÃO</span> {tc.then}</p>
+              </div>
             </div>
-            <h3 className="font-bold text-sm">{tc.scenario}</h3>
-            <div className="space-y-0.5 text-xs text-slide-fg/70">
-              <p><span className="text-slide-success font-bold font-mono">DADO</span> {tc.given}</p>
-              <p><span className="text-slide-warning font-bold font-mono">QUANDO</span> {tc.when}</p>
-              <p><span className="text-slide-accent-2 font-bold font-mono">ENTÃO</span> {tc.then}</p>
-            </div>
+            {tc.evidenceKey && evidenceImages[tc.evidenceKey] && (
+              <div className="w-56 shrink-0 flex flex-col gap-1">
+                <img 
+                  src={evidenceImages[tc.evidenceKey]} 
+                  alt={`Evidência ${tc.id}`} 
+                  className="rounded-xl border border-slide-muted/20 w-full h-auto object-cover"
+                />
+                <span className="text-[10px] font-mono text-slide-muted text-center">
+                  {tc.status === 'passou' ? '✅ Passou' : tc.status === 'falhou' ? '❌ Falhou' : '⏳ Pendente'}
+                </span>
+              </div>
+            )}
           </div>
         ))}
       </div>
+    </SlideWrapper>
+  );
+}
     </SlideWrapper>
   );
 }
