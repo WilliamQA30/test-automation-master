@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight, Bug, TestTube, Code, FileText, Target } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Bug, TestTube, Code, FileText, Target, Video, CheckCircle } from 'lucide-react';
 import { testCases, bugReports } from '@/data/testData';
 import { cypressCode } from '@/data/cypressCode';
 
@@ -204,6 +204,60 @@ function CypressSlide({ part }: { part: number }) {
   );
 }
 
+function CypressVideoSlide() {
+  return (
+    <SlideWrapper>
+      <div className="flex items-center gap-3 mb-8">
+        <Video className="w-6 h-6 text-slide-accent" />
+        <h2 className="text-3xl font-bold">Evidências — Gravação Cypress</h2>
+      </div>
+      <div className="flex-1 flex flex-col gap-6">
+        <div className="bg-slide-card rounded-2xl p-8 flex flex-col gap-4">
+          <h3 className="text-xl font-bold text-slide-accent">Gravação Automática de Testes</h3>
+          <p className="text-slide-fg/80 leading-relaxed">
+            O Cypress gera automaticamente vídeos de cada execução de teste. Os arquivos são salvos em{' '}
+            <code className="bg-slide-code-bg px-2 py-1 rounded text-sm">cypress/videos/</code> após rodar{' '}
+            <code className="bg-slide-code-bg px-2 py-1 rounded text-sm">npx cypress run</code>.
+          </p>
+        </div>
+
+        <div className="bg-slide-card rounded-2xl p-8">
+          <h3 className="text-lg font-bold text-slide-accent mb-4">Configuração no cypress.config.ts</h3>
+          <pre className="bg-slide-code-bg rounded-xl p-5 text-sm font-mono text-slide-fg/90 leading-relaxed">{`import { defineConfig } from 'cypress';
+
+export default defineConfig({
+  e2e: {
+    baseUrl: 'https://creative-sherbet-a51eac.netlify.app',
+    video: true,                    // ✅ Ativado por padrão
+    videosFolder: 'cypress/videos', // 📁 Pasta de saída
+    videoCompression: 32,           // 🎥 Compressão (0-51)
+    screenshotOnRunFailure: true,   // 📸 Screenshot em falhas
+  },
+});`}</pre>
+        </div>
+
+        <div className="grid grid-cols-3 gap-4">
+          <div className="bg-slide-card rounded-xl p-5 text-center">
+            <Video className="w-8 h-8 text-slide-accent mx-auto mb-2" />
+            <p className="text-sm font-bold">cypress/videos/</p>
+            <p className="text-xs text-slide-muted mt-1">courses.cy.ts.mp4</p>
+          </div>
+          <div className="bg-slide-card rounded-xl p-5 text-center">
+            <CheckCircle className="w-8 h-8 text-slide-success mx-auto mb-2" />
+            <p className="text-sm font-bold">Comando</p>
+            <p className="text-xs text-slide-muted mt-1 font-mono">npx cypress run</p>
+          </div>
+          <div className="bg-slide-card rounded-xl p-5 text-center">
+            <TestTube className="w-8 h-8 text-slide-accent-2 mx-auto mb-2" />
+            <p className="text-sm font-bold">BUG-003 Validado</p>
+            <p className="text-xs text-slide-success mt-1">✅ Feedback funciona corretamente</p>
+          </div>
+        </div>
+      </div>
+    </SlideWrapper>
+  );
+}
+
 const slides = [
   <TitleSlide key="title" />,
   <AnalysisSlide key="analysis" />,
@@ -214,6 +268,7 @@ const slides = [
   <CypressSlide key="cy1" part={0} />,
   <CypressSlide key="cy2" part={1} />,
   <CypressSlide key="cy3" part={2} />,
+  <CypressVideoSlide key="video" />,
 ];
 
 export default function Presentation() {
