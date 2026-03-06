@@ -3,6 +3,22 @@ import { ChevronLeft, ChevronRight, Bug, TestTube, Code, FileText, Target, Video
 import { testCases, bugReports, evidences } from '@/data/testData';
 import { cypressCode } from '@/data/cypressCode';
 import screenshotListagem from '@/assets/screenshot-listagem.png';
+import evCadastroSucesso from '@/assets/evidence-cadastro-sucesso.png';
+import evCamposVazios from '@/assets/evidence-campos-vazios.png';
+import evListagemCursos from '@/assets/evidence-listagem-cursos.png';
+import evXssInput from '@/assets/evidence-xss-input.png';
+import evMobile from '@/assets/evidence-mobile.png';
+import evDuplicado from '@/assets/evidence-duplicado.png';
+
+const evidenceImages: Record<string, string> = {
+  'cadastro-sucesso': evCadastroSucesso,
+  'campos-vazios': evCamposVazios,
+  'listagem-cursos': evListagemCursos,
+  'listagem': screenshotListagem,
+  'xss-input': evXssInput,
+  'mobile': evMobile,
+  'duplicado': evDuplicado,
+};
 
 const typeColors: Record<string, string> = {
   positive: 'bg-slide-success',
