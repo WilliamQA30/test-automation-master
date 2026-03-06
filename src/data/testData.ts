@@ -84,7 +84,7 @@ export const testCases: TestCase[] = [
     then: 'O sistema valida o limite máximo de caracteres',
     type: 'edge',
     priority: 'media',
-    status: 'pendente',
+    status: 'falhou',
     evidenceKey: 'cadastro-sucesso',
   },
   {
@@ -95,7 +95,7 @@ export const testCases: TestCase[] = [
     then: 'O sistema sanitiza a entrada e não executa SQL',
     type: 'negative',
     priority: 'alta',
-    status: 'pendente',
+    status: 'falhou',
     evidenceKey: 'xss-input',
   },
   {
@@ -174,7 +174,7 @@ export const testCases: TestCase[] = [
     then: 'O sistema redireciona para a página inicial (listagem)',
     type: 'positive',
     priority: 'baixa',
-    status: 'pendente',
+    status: 'passou',
     evidenceKey: 'listagem',
   },
   // --- PERSISTÊNCIA ---
@@ -221,7 +221,7 @@ export const testCases: TestCase[] = [
     then: 'Todos os campos e botões são acessíveis por teclado',
     type: 'positive',
     priority: 'media',
-    status: 'pendente',
+    status: 'passou',
     evidenceKey: 'cadastro-sucesso',
   },
   {
@@ -232,7 +232,7 @@ export const testCases: TestCase[] = [
     then: 'O formulário é submetido normalmente',
     type: 'positive',
     priority: 'baixa',
-    status: 'pendente',
+    status: 'passou',
     evidenceKey: 'cadastro-sucesso',
   },
   // --- PERFORMANCE ---
@@ -244,7 +244,7 @@ export const testCases: TestCase[] = [
     then: 'A página carrega em menos de 3 segundos',
     type: 'edge',
     priority: 'media',
-    status: 'pendente',
+    status: 'passou',
     evidenceKey: 'listagem-cursos',
   },
   {
@@ -255,7 +255,7 @@ export const testCases: TestCase[] = [
     then: 'A renderização é fluida sem travamentos (FPS > 30)',
     type: 'edge',
     priority: 'media',
-    status: 'pendente',
+    status: 'passou',
     evidenceKey: 'listagem-cursos',
   },
   {
@@ -266,7 +266,7 @@ export const testCases: TestCase[] = [
     then: 'O cadastro é concluído em menos de 2 segundos',
     type: 'edge',
     priority: 'media',
-    status: 'pendente',
+    status: 'passou',
     evidenceKey: 'cadastro-sucesso',
   },
   // --- EDIÇÃO ---
@@ -278,7 +278,7 @@ export const testCases: TestCase[] = [
     then: 'O curso é atualizado com o novo nome na listagem',
     type: 'positive',
     priority: 'alta',
-    status: 'pendente',
+    status: 'falhou',
     evidenceKey: 'listagem-cursos',
   },
   {
@@ -289,7 +289,7 @@ export const testCases: TestCase[] = [
     then: 'O sistema exibe mensagens de validação e não salva',
     type: 'negative',
     priority: 'alta',
-    status: 'pendente',
+    status: 'falhou',
     evidenceKey: 'campos-vazios',
   },
   {
@@ -300,7 +300,7 @@ export const testCases: TestCase[] = [
     then: 'As alterações são descartadas e o curso mantém dados originais',
     type: 'positive',
     priority: 'media',
-    status: 'pendente',
+    status: 'falhou',
     evidenceKey: 'listagem-cursos',
   },
   // --- EXCLUSÃO ---
@@ -312,7 +312,7 @@ export const testCases: TestCase[] = [
     then: 'O curso é removido da listagem',
     type: 'positive',
     priority: 'alta',
-    status: 'pendente',
+    status: 'falhou',
     evidenceKey: 'listagem-cursos',
   },
   {
@@ -323,7 +323,7 @@ export const testCases: TestCase[] = [
     then: 'O curso permanece na listagem sem alterações',
     type: 'positive',
     priority: 'media',
-    status: 'pendente',
+    status: 'falhou',
     evidenceKey: 'listagem-cursos',
   },
   {
@@ -334,7 +334,7 @@ export const testCases: TestCase[] = [
     then: 'O curso excluído não reaparece na listagem',
     type: 'positive',
     priority: 'alta',
-    status: 'pendente',
+    status: 'falhou',
     evidenceKey: 'listagem',
   },
   // --- API & CONTRATO ---
@@ -346,7 +346,7 @@ export const testCases: TestCase[] = [
     then: 'A API retorna status 200 e array de cursos com campos id, nome, descrição',
     type: 'positive',
     priority: 'alta',
-    status: 'pendente',
+    status: 'falhou',
     evidenceKey: 'listagem-cursos',
   },
   {
@@ -357,7 +357,7 @@ export const testCases: TestCase[] = [
     then: 'A API retorna status 201 e o objeto do curso criado com id gerado',
     type: 'positive',
     priority: 'alta',
-    status: 'pendente',
+    status: 'falhou',
     evidenceKey: 'cadastro-sucesso',
   },
   {
@@ -368,7 +368,7 @@ export const testCases: TestCase[] = [
     then: 'A API retorna status 400 com mensagem de erro descritiva',
     type: 'negative',
     priority: 'alta',
-    status: 'pendente',
+    status: 'falhou',
     evidenceKey: 'campos-vazios',
   },
   {
@@ -379,7 +379,7 @@ export const testCases: TestCase[] = [
     then: 'A API retorna status 200 e o curso não aparece mais no GET',
     type: 'positive',
     priority: 'alta',
-    status: 'pendente',
+    status: 'falhou',
     evidenceKey: 'listagem-cursos',
   },
 ];
