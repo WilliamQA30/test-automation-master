@@ -495,11 +495,19 @@ function ConclusionSlide() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-2 h-2 rounded-full bg-slide-danger mt-1.5 shrink-0" />
+                <span><strong>SQL Injection:</strong> Descrição aceita payloads SQL sem sanitização</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-2 h-2 rounded-full bg-slide-danger mt-1.5 shrink-0" />
                 <span><strong>Validação:</strong> Formulário aceita campos vazios e apenas espaços</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-2 h-2 rounded-full bg-slide-warning mt-1.5 shrink-0" />
-                <span><strong>Duplicados:</strong> Não há controle de unicidade nos nomes de cursos</span>
+                <span><strong>CRUD incompleto:</strong> Sem funcionalidades de edição e exclusão de cursos</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-2 h-2 rounded-full bg-slide-warning mt-1.5 shrink-0" />
+                <span><strong>API:</strong> Nenhum endpoint REST exposto (/api/courses retorna 404)</span>
               </li>
             </ul>
           </div>
@@ -511,10 +519,10 @@ function ConclusionSlide() {
               {[
                 { priority: 'P0', color: 'bg-slide-danger', text: 'Implementar sanitização de inputs contra XSS e SQL Injection' },
                 { priority: 'P0', color: 'bg-slide-danger', text: 'Adicionar validação client-side e server-side para campos obrigatórios' },
-                { priority: 'P1', color: 'bg-slide-accent', text: 'Implementar verificação de duplicidade de nomes de cursos' },
-                { priority: 'P1', color: 'bg-slide-accent', text: 'Adicionar limites de caracteres nos campos do formulário' },
-                { priority: 'P2', color: 'bg-slide-warning', text: 'Melhorar acessibilidade: labels, ARIA attributes e navegação por teclado' },
-                { priority: 'P2', color: 'bg-slide-warning', text: 'Adicionar testes de performance com cargas maiores de dados' },
+                { priority: 'P1', color: 'bg-slide-accent', text: 'Implementar funcionalidades de edição e exclusão de cursos (CRUD completo)' },
+                { priority: 'P1', color: 'bg-slide-accent', text: 'Expor API RESTful para operações de CRUD' },
+                { priority: 'P1', color: 'bg-slide-accent', text: 'Adicionar limites de caracteres e verificação de duplicidade' },
+                { priority: 'P2', color: 'bg-slide-warning', text: 'Melhorar acessibilidade: labels, ARIA attributes e foco visível' },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <span className={`px-2 py-0.5 rounded text-[10px] font-bold text-slide-bg ${item.color} shrink-0`}>
@@ -526,16 +534,19 @@ function ConclusionSlide() {
             </div>
           </div>
           <div className="bg-slide-card rounded-2xl p-6">
-            <h3 className="text-lg font-bold text-slide-accent-2 mb-3">🚀 Próximos Passos</h3>
+            <h3 className="text-lg font-bold text-slide-accent-2 mb-3">✔️ Já Implementado neste Projeto</h3>
             <ul className="space-y-2 text-sm text-slide-fg/80">
               <li className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-slide-accent-2" /> Integrar testes Cypress no pipeline CI/CD (GitHub Actions)
+                <CheckCircle className="w-4 h-4 text-slide-success shrink-0" /> Pipeline CI/CD com GitHub Actions (Chrome, Firefox, Edge)
               </li>
               <li className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-slide-accent-2" /> Expandir cobertura para fluxos de edição e exclusão
+                <CheckCircle className="w-4 h-4 text-slide-success shrink-0" /> Cobertura expandida para fluxos de edição e exclusão
               </li>
               <li className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-slide-accent-2" /> Implementar testes de API e contrato
+                <CheckCircle className="w-4 h-4 text-slide-success shrink-0" /> Testes de API e contrato (GET, POST, DELETE)
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-slide-success shrink-0" /> Testes de performance com cargas de 50 e 100 cursos
               </li>
             </ul>
           </div>
