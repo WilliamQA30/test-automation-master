@@ -213,7 +213,10 @@ function SummarySlide() {
     { name: 'Persistência', tests: testCases.filter(t => ['CT-015'].includes(t.id)) },
     { name: 'Responsividade', tests: testCases.filter(t => ['CT-016','CT-017'].includes(t.id)) },
     { name: 'Acessibilidade', tests: testCases.filter(t => ['CT-018','CT-019'].includes(t.id)) },
-    { name: 'Performance', tests: testCases.filter(t => ['CT-020'].includes(t.id)) },
+    { name: 'Performance', tests: testCases.filter(t => ['CT-020','CT-021','CT-022'].includes(t.id)) },
+    { name: 'Edição', tests: testCases.filter(t => ['CT-023','CT-024','CT-025'].includes(t.id)) },
+    { name: 'Exclusão', tests: testCases.filter(t => ['CT-026','CT-027','CT-028'].includes(t.id)) },
+    { name: 'API/Contrato', tests: testCases.filter(t => ['CT-029','CT-030','CT-031','CT-032'].includes(t.id)) },
   ];
 
   return (
