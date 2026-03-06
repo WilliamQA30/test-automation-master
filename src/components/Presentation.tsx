@@ -87,7 +87,10 @@ function AnalysisSlide() {
             Aplicação simples para <strong>cadastro e listagem de cursos</strong>. 
             Permite ao usuário criar novos cursos e visualizar os já cadastrados.
           </p>
-          <img src={evidenceListagem} alt="Screenshot da listagem" className="rounded-xl border border-slide-muted/20 mt-2" />
+          <div className="mt-2">
+            <p className="text-xs text-slide-muted mb-1 font-mono">Tela: Listagem de Cursos</p>
+            <img src={screenshotListagem} alt="Screenshot da tela de listagem de cursos" className="rounded-xl border border-slide-muted/20 w-full" />
+          </div>
         </div>
         <div className="flex flex-col gap-6">
           <div className="bg-slide-card rounded-2xl p-6 flex flex-col gap-3">
