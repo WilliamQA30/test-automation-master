@@ -7,6 +7,7 @@ export interface TestCase {
   type: 'positive' | 'negative' | 'edge';
   priority: 'alta' | 'media' | 'baixa';
   status: 'passou' | 'falhou' | 'pendente';
+  evidenceKey?: string;
 }
 
 export interface BugReport {
