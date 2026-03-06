@@ -135,15 +135,5 @@ export const bugReports: BugReport[] = [
     expected: 'O sistema deve rejeitar entradas contendo apenas espaços',
     severity: 'alta',
   },
-  {
-    id: 'BUG-003',
-    title: 'Sem feedback visual de sucesso após cadastro',
-    steps: [
-      'Preencher todos os campos corretamente',
-      'Submeter o formulário de cadastro',
-    ],
-    actual: 'Nenhuma mensagem de confirmação é exibida',
-    expected: 'O sistema deve exibir uma mensagem de sucesso (toast/snackbar)',
-    severity: 'media',
-  },
 ];
+
