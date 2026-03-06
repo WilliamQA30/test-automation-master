@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight, Bug, TestTube, Code, FileText, Target, Video, CheckCircle, XCircle, Clock, BarChart3, Camera, Shield } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Bug, TestTube, Code, FileText, Target, Video, CheckCircle, XCircle, Clock, BarChart3, Camera, Shield, GitBranch, Server, Pencil, Trash2 } from 'lucide-react';
 import { testCases, bugReports, evidences } from '@/data/testData';
-import { cypressCode } from '@/data/cypressCode';
+import { cypressCode, githubActionsCode } from '@/data/cypressCode';
 import screenshotListagem from '@/assets/screenshot-listagem.png';
 import evCadastroSucesso from '@/assets/evidence-cadastro-sucesso.png';
 import evCamposVazios from '@/assets/evidence-campos-vazios.png';
