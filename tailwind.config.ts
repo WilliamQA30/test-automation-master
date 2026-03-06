@@ -13,12 +13,28 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ['Space Grotesk', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        slide: {
+          bg: "hsl(var(--slide-bg))",
+          fg: "hsl(var(--slide-fg))",
+          accent: "hsl(var(--slide-accent))",
+          "accent-2": "hsl(var(--slide-accent-2))",
+          success: "hsl(var(--slide-success))",
+          danger: "hsl(var(--slide-danger))",
+          warning: "hsl(var(--slide-warning))",
+          "code-bg": "hsl(var(--slide-code-bg))",
+          card: "hsl(var(--slide-card))",
+          muted: "hsl(var(--slide-muted))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
