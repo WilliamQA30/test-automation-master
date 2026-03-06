@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight, Bug, TestTube, Code, FileText, Target, Video, CheckCircle, XCircle, Clock, BarChart3, Camera, Shield } from 'lucide-react';
 import { testCases, bugReports, evidences } from '@/data/testData';
 import { cypressCode } from '@/data/cypressCode';
-import evidenceListagem from '@/assets/evidence-listagem.png';
+import screenshotListagem from '@/assets/screenshot-listagem.png';
 
 const typeColors: Record<string, string> = {
   positive: 'bg-slide-success',
