@@ -30,6 +30,7 @@ export const testCases: TestCase[] = [
     type: 'positive',
     priority: 'alta',
     status: 'passou',
+    evidenceKey: 'cadastro-sucesso',
   },
   {
     id: 'CT-002',
@@ -40,6 +41,7 @@ export const testCases: TestCase[] = [
     type: 'negative',
     priority: 'alta',
     status: 'falhou',
+    evidenceKey: 'campos-vazios',
   },
   {
     id: 'CT-003',
@@ -50,6 +52,7 @@ export const testCases: TestCase[] = [
     type: 'negative',
     priority: 'media',
     status: 'falhou',
+    evidenceKey: 'duplicado',
   },
   {
     id: 'CT-004',
@@ -60,6 +63,7 @@ export const testCases: TestCase[] = [
     type: 'negative',
     priority: 'alta',
     status: 'falhou',
+    evidenceKey: 'xss-input',
   },
   {
     id: 'CT-005',
@@ -70,6 +74,7 @@ export const testCases: TestCase[] = [
     type: 'negative',
     priority: 'alta',
     status: 'falhou',
+    evidenceKey: 'campos-vazios',
   },
   {
     id: 'CT-006',
@@ -80,6 +85,7 @@ export const testCases: TestCase[] = [
     type: 'edge',
     priority: 'media',
     status: 'pendente',
+    evidenceKey: 'cadastro-sucesso',
   },
   {
     id: 'CT-007',
@@ -90,6 +96,7 @@ export const testCases: TestCase[] = [
     type: 'negative',
     priority: 'alta',
     status: 'pendente',
+    evidenceKey: 'xss-input',
   },
   {
     id: 'CT-008',
@@ -100,6 +107,7 @@ export const testCases: TestCase[] = [
     type: 'positive',
     priority: 'alta',
     status: 'passou',
+    evidenceKey: 'cadastro-sucesso',
   },
   // --- LISTAGEM ---
   {
@@ -111,6 +119,7 @@ export const testCases: TestCase[] = [
     type: 'positive',
     priority: 'alta',
     status: 'passou',
+    evidenceKey: 'listagem-cursos',
   },
   {
     id: 'CT-010',
@@ -121,6 +130,7 @@ export const testCases: TestCase[] = [
     type: 'edge',
     priority: 'media',
     status: 'passou',
+    evidenceKey: 'listagem',
   },
   {
     id: 'CT-011',
@@ -131,6 +141,7 @@ export const testCases: TestCase[] = [
     type: 'positive',
     priority: 'alta',
     status: 'passou',
+    evidenceKey: 'listagem-cursos',
   },
   // --- NAVEGAÇÃO ---
   {
@@ -142,6 +153,7 @@ export const testCases: TestCase[] = [
     type: 'positive',
     priority: 'media',
     status: 'passou',
+    evidenceKey: 'listagem',
   },
   {
     id: 'CT-013',
@@ -152,6 +164,7 @@ export const testCases: TestCase[] = [
     type: 'positive',
     priority: 'media',
     status: 'passou',
+    evidenceKey: 'cadastro-sucesso',
   },
   {
     id: 'CT-014',
@@ -162,6 +175,7 @@ export const testCases: TestCase[] = [
     type: 'positive',
     priority: 'baixa',
     status: 'pendente',
+    evidenceKey: 'listagem',
   },
   // --- PERSISTÊNCIA ---
   {
@@ -173,6 +187,7 @@ export const testCases: TestCase[] = [
     type: 'positive',
     priority: 'alta',
     status: 'passou',
+    evidenceKey: 'listagem-cursos',
   },
   // --- RESPONSIVIDADE ---
   {
@@ -184,6 +199,7 @@ export const testCases: TestCase[] = [
     type: 'positive',
     priority: 'media',
     status: 'passou',
+    evidenceKey: 'mobile',
   },
   {
     id: 'CT-017',
@@ -194,6 +210,7 @@ export const testCases: TestCase[] = [
     type: 'positive',
     priority: 'media',
     status: 'passou',
+    evidenceKey: 'mobile',
   },
   // --- ACESSIBILIDADE ---
   {
@@ -205,6 +222,7 @@ export const testCases: TestCase[] = [
     type: 'positive',
     priority: 'media',
     status: 'pendente',
+    evidenceKey: 'cadastro-sucesso',
   },
   {
     id: 'CT-019',
@@ -215,6 +233,7 @@ export const testCases: TestCase[] = [
     type: 'positive',
     priority: 'baixa',
     status: 'pendente',
+    evidenceKey: 'cadastro-sucesso',
   },
   // --- PERFORMANCE ---
   {
@@ -226,6 +245,7 @@ export const testCases: TestCase[] = [
     type: 'edge',
     priority: 'media',
     status: 'pendente',
+    evidenceKey: 'listagem-cursos',
   },
 ];
 
