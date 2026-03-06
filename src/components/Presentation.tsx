@@ -20,6 +20,8 @@ const evidenceImages: Record<string, string> = {
   'duplicado': evDuplicado,
 };
 
+const portraitEvidenceKeys = new Set(['mobile']);
+
 const typeColors: Record<string, string> = {
   positive: 'bg-slide-success',
   negative: 'bg-slide-danger',
@@ -179,7 +181,7 @@ function TestCasesSlide({ page }: { page: number }) {
                 <p><span className="text-slide-accent-2 font-bold font-mono">ENTÃO</span> {tc.then}</p>
               </div>
             </div>
-            {tc.evidenceKey && evidenceImages[tc.evidenceKey] && (
+            {tc.evidenceKey && evidenceImages[tc.evidenceKey] && !portraitEvidenceKeys.has(tc.evidenceKey) && (
               <div className="w-96 shrink-0 flex flex-col gap-1">
                 <img 
                   src={evidenceImages[tc.evidenceKey]} 
@@ -189,6 +191,12 @@ function TestCasesSlide({ page }: { page: number }) {
                 <span className="text-xs font-mono text-slide-muted text-center">
                   {tc.status === 'passou' ? '✅ Passou' : tc.status === 'falhou' ? '❌ Falhou' : '⏳ Pendente'}
                 </span>
+              </div>
+            )}
+            {tc.evidenceKey && portraitEvidenceKeys.has(tc.evidenceKey) && (
+              <div className="w-24 shrink-0 flex flex-col items-center justify-center gap-1">
+                <Camera className="w-5 h-5 text-slide-accent" />
+                <span className="text-[10px] font-mono text-slide-muted text-center">Ver slide seguinte</span>
               </div>
             )}
           </div>
@@ -595,18 +603,80 @@ function CICDSlide() {
   );
 }
 
+// Collect test cases with portrait evidence for dedicated slides
+const portraitTestCases = testCases.filter(tc => tc.evidenceKey && portraitEvidenceKeys.has(tc.evidenceKey));
+
+function PortraitEvidenceSlide({ tc }: { tc: typeof testCases[0] }) {
+  return (
+    <SlideWrapper>
+      <div className="flex items-center gap-3 mb-4">
+        <Camera className="w-6 h-6 text-slide-accent" />
+        <h2 className="text-3xl font-bold">Evidência — {tc.id}</h2>
+        <span className="ml-auto text-sm font-mono text-slide-muted">{tc.scenario}</span>
+      </div>
+      <div className="flex-1 flex gap-8 items-center">
+        <div className="flex-1 flex flex-col gap-4">
+          <div className="bg-slide-card rounded-2xl p-6">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="font-mono text-lg text-slide-accent font-bold">{tc.id}</span>
+              <span className={`px-2 py-0.5 rounded text-xs font-bold text-slide-bg ${typeColors[tc.type]}`}>
+                {typeLabels[tc.type]}
+              </span>
+              {statusIcons[tc.status]}
+            </div>
+            <h3 className="font-bold text-lg mb-3">{tc.scenario}</h3>
+            <div className="space-y-2 text-sm text-slide-fg/70">
+              <p><span className="text-slide-success font-bold font-mono">DADO</span> {tc.given}</p>
+              <p><span className="text-slide-warning font-bold font-mono">QUANDO</span> {tc.when}</p>
+              <p><span className="text-slide-accent-2 font-bold font-mono">ENTÃO</span> {tc.then}</p>
+            </div>
+          </div>
+          <div className="bg-slide-card rounded-2xl p-6">
+            <p className="text-sm text-slide-muted font-mono mb-2">Resultado</p>
+            <p className="text-base font-bold">
+              {tc.status === 'passou' ? '✅ Teste aprovado — evidência visual ao lado' : '❌ Teste reprovado'}
+            </p>
+          </div>
+        </div>
+        {tc.evidenceKey && evidenceImages[tc.evidenceKey] && (
+          <div className="w-72 shrink-0 flex flex-col gap-2">
+            <img 
+              src={evidenceImages[tc.evidenceKey]} 
+              alt={`Evidência ${tc.id}`}
+              className="rounded-2xl border border-slide-muted/20 w-full h-auto object-contain max-h-[500px]"
+            />
+            <span className="text-xs font-mono text-slide-muted text-center">
+              {tc.status === 'passou' ? '✅ Passou' : '❌ Falhou'}
+            </span>
+          </div>
+        )}
+      </div>
+    </SlideWrapper>
+  );
+}
+
 // Build slides dynamically
 const cypressLines = cypressCode.trim().split('\n');
 const cypressSlideCount = Math.ceil(cypressLines.length / 32);
 const evidenceSlideCount = Math.ceil(evidences.length / 7);
 const testCaseSlideCount = Math.ceil(testCases.length / 2);
 
+// Build test case slides, inserting portrait evidence slides after the page that contains them
+const testCaseSlides: React.ReactNode[] = [];
+for (let i = 0; i < testCaseSlideCount; i++) {
+  testCaseSlides.push(<TestCasesSlide key={`tc${i}`} page={i} />);
+  const start = i * 2;
+  const pageItems = testCases.slice(start, start + 2);
+  const portraitItems = pageItems.filter(tc => tc.evidenceKey && portraitEvidenceKeys.has(tc.evidenceKey));
+  portraitItems.forEach(tc => {
+    testCaseSlides.push(<PortraitEvidenceSlide key={`portrait-${tc.id}`} tc={tc} />);
+  });
+}
+
 const slides = [
   <TitleSlide key="title" />,
   <AnalysisSlide key="analysis" />,
-  ...Array.from({ length: testCaseSlideCount }, (_, i) => (
-    <TestCasesSlide key={`tc${i}`} page={i} />
-  )),
+  ...testCaseSlides,
   <SummarySlide key="summary" />,
   ...Array.from({ length: evidenceSlideCount }, (_, i) => (
     <EvidencesSlide key={`ev${i}`} page={i} />
