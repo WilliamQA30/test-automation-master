@@ -84,6 +84,9 @@ function TitleSlide() {
           <span className="flex items-center gap-2 text-sm"><XCircle className="w-4 h-4 text-slide-danger" /> {failed} Falhou</span>
           <span className="flex items-center gap-2 text-sm"><Clock className="w-4 h-4 text-slide-warning" /> {pending} Pendente</span>
         </div>
+        <p className="text-base text-slide-muted mt-4 font-mono">
+          Responsável: <strong className="text-slide-fg">Luis Eric de Lima Nazaré</strong>
+        </p>
       </div>
     </SlideWrapper>
   );
@@ -177,7 +180,7 @@ function TestCasesSlide({ page }: { page: number }) {
               </div>
             </div>
             {tc.evidenceKey && evidenceImages[tc.evidenceKey] && (
-              <div className="w-80 shrink-0 flex flex-col gap-1">
+              <div className="w-96 shrink-0 flex flex-col gap-1">
                 <img 
                   src={evidenceImages[tc.evidenceKey]} 
                   alt={`Evidência ${tc.id}`} 
