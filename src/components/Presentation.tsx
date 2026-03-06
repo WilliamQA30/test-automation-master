@@ -194,9 +194,7 @@ function TestCasesSlide({ page }: { page: number }) {
     </SlideWrapper>
   );
 }
-    </SlideWrapper>
-  );
-}
+
 
 function SummarySlide() {
   const passed = testCases.filter(t => t.status === 'passou').length;
