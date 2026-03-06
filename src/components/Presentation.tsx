@@ -20,6 +20,8 @@ const evidenceImages: Record<string, string> = {
   'duplicado': evDuplicado,
 };
 
+const portraitEvidenceKeys = new Set(['mobile']);
+
 const typeColors: Record<string, string> = {
   positive: 'bg-slide-success',
   negative: 'bg-slide-danger',
