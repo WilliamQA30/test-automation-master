@@ -450,11 +450,92 @@ export default defineConfig({
   );
 }
 
+function ConclusionSlide() {
+  const passed = testCases.filter(t => t.status === 'passou').length;
+  const total = testCases.length;
+  const passRate = Math.round((passed / total) * 100);
+
+  return (
+    <SlideWrapper>
+      <div className="flex items-center gap-3 mb-6">
+        <Shield className="w-6 h-6 text-slide-accent" />
+        <h2 className="text-3xl font-bold">Conclusão & Recomendações</h2>
+      </div>
+      <div className="flex-1 grid grid-cols-2 gap-6">
+        <div className="flex flex-col gap-4">
+          <div className="bg-slide-card rounded-2xl p-6">
+            <h3 className="text-lg font-bold text-slide-accent mb-3">Resumo Geral</h3>
+            <p className="text-slide-fg/80 text-sm leading-relaxed">
+              Foram executados <strong>{total} casos de teste</strong> com uma taxa de aprovação de{' '}
+              <strong className="text-slide-accent">{passRate}%</strong>. Foram identificados{' '}
+              <strong className="text-slide-danger">{bugReports.length} bugs</strong>, incluindo vulnerabilidades 
+              de segurança críticas (XSS) e falhas de validação de formulário.
+            </p>
+          </div>
+          <div className="bg-slide-card rounded-2xl p-6">
+            <h3 className="text-lg font-bold text-slide-danger mb-3">⚠️ Riscos Identificados</h3>
+            <ul className="space-y-2 text-sm text-slide-fg/80">
+              <li className="flex items-start gap-2">
+                <span className="w-2 h-2 rounded-full bg-slide-danger mt-1.5 shrink-0" />
+                <span><strong>XSS:</strong> Inputs não são sanitizados, permitindo injeção de scripts maliciosos</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-2 h-2 rounded-full bg-slide-danger mt-1.5 shrink-0" />
+                <span><strong>Validação:</strong> Formulário aceita campos vazios e apenas espaços</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-2 h-2 rounded-full bg-slide-warning mt-1.5 shrink-0" />
+                <span><strong>Duplicados:</strong> Não há controle de unicidade nos nomes de cursos</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="flex flex-col gap-4">
+          <div className="bg-slide-card rounded-2xl p-6">
+            <h3 className="text-lg font-bold text-slide-success mb-3">✅ Recomendações de Melhorias</h3>
+            <div className="space-y-3">
+              {[
+                { priority: 'P0', color: 'bg-slide-danger', text: 'Implementar sanitização de inputs contra XSS e SQL Injection' },
+                { priority: 'P0', color: 'bg-slide-danger', text: 'Adicionar validação client-side e server-side para campos obrigatórios' },
+                { priority: 'P1', color: 'bg-slide-accent', text: 'Implementar verificação de duplicidade de nomes de cursos' },
+                { priority: 'P1', color: 'bg-slide-accent', text: 'Adicionar limites de caracteres nos campos do formulário' },
+                { priority: 'P2', color: 'bg-slide-warning', text: 'Melhorar acessibilidade: labels, ARIA attributes e navegação por teclado' },
+                { priority: 'P2', color: 'bg-slide-warning', text: 'Adicionar testes de performance com cargas maiores de dados' },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <span className={`px-2 py-0.5 rounded text-[10px] font-bold text-slide-bg ${item.color} shrink-0`}>
+                    {item.priority}
+                  </span>
+                  <span className="text-sm text-slide-fg/80">{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="bg-slide-card rounded-2xl p-6">
+            <h3 className="text-lg font-bold text-slide-accent-2 mb-3">🚀 Próximos Passos</h3>
+            <ul className="space-y-2 text-sm text-slide-fg/80">
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-slide-accent-2" /> Integrar testes Cypress no pipeline CI/CD (GitHub Actions)
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-slide-accent-2" /> Expandir cobertura para fluxos de edição e exclusão
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-slide-accent-2" /> Implementar testes de API e contrato
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </SlideWrapper>
+  );
+}
+
 // Build slides dynamically
 const cypressLines = cypressCode.trim().split('\n');
 const cypressSlideCount = Math.ceil(cypressLines.length / 32);
 const evidenceSlideCount = Math.ceil(evidences.length / 7);
-const testCaseSlideCount = Math.ceil(testCases.length / 4);
+const testCaseSlideCount = Math.ceil(testCases.length / 2);
 
 const slides = [
   <TitleSlide key="title" />,
@@ -471,6 +552,7 @@ const slides = [
     <CypressSlide key={`cy${i}`} part={i} />
   )),
   <CypressVideoSlide key="video" />,
+  <ConclusionSlide key="conclusion" />,
 ];
 
 export default function Presentation() {
