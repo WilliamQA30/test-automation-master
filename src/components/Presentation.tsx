@@ -49,7 +49,7 @@ function TitleSlide() {
         </p>
         <div className="flex gap-4 mt-4">
           <span className="px-4 py-2 rounded-lg bg-slide-card text-sm font-mono">10 Casos de Teste</span>
-          <span className="px-4 py-2 rounded-lg bg-slide-card text-sm font-mono">3 Bugs Reportados</span>
+          <span className="px-4 py-2 rounded-lg bg-slide-card text-sm font-mono">2 Bugs Reportados</span>
           <span className="px-4 py-2 rounded-lg bg-slide-card text-sm font-mono">Cypress E2E</span>
         </div>
       </div>
