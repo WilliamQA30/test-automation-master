@@ -534,6 +534,64 @@ function ConclusionSlide() {
   );
 }
 
+function CICDSlide() {
+  return (
+    <SlideWrapper>
+      <div className="flex items-center gap-3 mb-4">
+        <GitBranch className="w-6 h-6 text-slide-accent-2" />
+        <h2 className="text-3xl font-bold">CI/CD — GitHub Actions</h2>
+      </div>
+      <div className="flex-1 grid grid-cols-2 gap-5">
+        <div className="bg-slide-code-bg rounded-2xl p-5 overflow-hidden">
+          <p className="text-xs font-mono text-slide-accent mb-2">.github/workflows/cypress-tests.yml</p>
+          <pre className="text-[10px] leading-relaxed text-slide-fg/90 font-mono whitespace-pre overflow-auto h-full">
+            {githubActionsCode.trim()}
+          </pre>
+        </div>
+        <div className="flex flex-col gap-4">
+          <div className="bg-slide-card rounded-2xl p-5">
+            <h3 className="text-base font-bold text-slide-accent mb-3">Pipeline Automatizado</h3>
+            <ul className="space-y-2 text-sm text-slide-fg/80">
+              <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slide-success" /> Executa em push/PR para main e develop</li>
+              <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slide-success" /> Testes paralelos em Chrome, Firefox e Edge</li>
+              <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slide-success" /> Agendamento diário (Seg-Sex 8h)</li>
+              <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slide-success" /> Upload automático de vídeos e screenshots</li>
+            </ul>
+          </div>
+          <div className="bg-slide-card rounded-2xl p-5">
+            <h3 className="text-base font-bold text-slide-accent mb-3">Artefatos Gerados</h3>
+            <div className="grid grid-cols-2 gap-2">
+              {[
+                { icon: <Video className="w-5 h-5 text-slide-accent" />, label: 'Vídeos', desc: '7 dias retenção' },
+                { icon: <Camera className="w-5 h-5 text-slide-danger" />, label: 'Screenshots', desc: 'Apenas em falhas' },
+                { icon: <BarChart3 className="w-5 h-5 text-slide-accent-2" />, label: 'Relatórios', desc: '30 dias retenção' },
+                { icon: <Server className="w-5 h-5 text-slide-success" />, label: 'Dashboard', desc: 'Cypress Cloud' },
+              ].map((item, i) => (
+                <div key={i} className="bg-slide-bg rounded-xl p-3 flex items-center gap-3">
+                  {item.icon}
+                  <div>
+                    <p className="text-xs font-bold">{item.label}</p>
+                    <p className="text-[10px] text-slide-muted">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="bg-slide-card rounded-2xl p-5">
+            <h3 className="text-base font-bold text-slide-accent mb-3">Novos Fluxos Cobertos</h3>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="flex items-center gap-2 text-sm"><Pencil className="w-4 h-4 text-slide-warning" /> Edição de cursos</div>
+              <div className="flex items-center gap-2 text-sm"><Trash2 className="w-4 h-4 text-slide-danger" /> Exclusão de cursos</div>
+              <div className="flex items-center gap-2 text-sm"><Server className="w-4 h-4 text-slide-accent-2" /> Testes de API</div>
+              <div className="flex items-center gap-2 text-sm"><BarChart3 className="w-4 h-4 text-slide-success" /> Performance</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </SlideWrapper>
+  );
+}
+
 // Build slides dynamically
 const cypressLines = cypressCode.trim().split('\n');
 const cypressSlideCount = Math.ceil(cypressLines.length / 32);
@@ -555,6 +613,7 @@ const slides = [
     <CypressSlide key={`cy${i}`} part={i} />
   )),
   <CypressVideoSlide key="video" />,
+  <CICDSlide key="cicd" />,
   <ConclusionSlide key="conclusion" />,
 ];
 
