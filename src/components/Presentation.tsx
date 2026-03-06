@@ -181,7 +181,7 @@ function TestCasesSlide({ page }: { page: number }) {
                 <p><span className="text-slide-accent-2 font-bold font-mono">ENTÃO</span> {tc.then}</p>
               </div>
             </div>
-            {tc.evidenceKey && evidenceImages[tc.evidenceKey] && (
+            {tc.evidenceKey && evidenceImages[tc.evidenceKey] && !portraitEvidenceKeys.has(tc.evidenceKey) && (
               <div className="w-96 shrink-0 flex flex-col gap-1">
                 <img 
                   src={evidenceImages[tc.evidenceKey]} 
@@ -191,6 +191,12 @@ function TestCasesSlide({ page }: { page: number }) {
                 <span className="text-xs font-mono text-slide-muted text-center">
                   {tc.status === 'passou' ? '✅ Passou' : tc.status === 'falhou' ? '❌ Falhou' : '⏳ Pendente'}
                 </span>
+              </div>
+            )}
+            {tc.evidenceKey && portraitEvidenceKeys.has(tc.evidenceKey) && (
+              <div className="w-24 shrink-0 flex flex-col items-center justify-center gap-1">
+                <Camera className="w-5 h-5 text-slide-accent" />
+                <span className="text-[10px] font-mono text-slide-muted text-center">Ver slide seguinte</span>
               </div>
             )}
           </div>
